@@ -68,6 +68,7 @@
     git-crypt
     godot
     gdscript-formatter
+    krita
     libreoffice
     proton-vpn
     pyrefly
@@ -79,6 +80,11 @@
     tree-sitter
     uv
     zoxide
+  ];
+
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    elisa
   ];
 
   # List font packages installed in system profile.
@@ -110,20 +116,12 @@
 
     flatpak.enable = true;
 
-    keyd = {
-      enable = true;
-      keyboards.default.settings.main = {
-        capslock = "overload(control, esc)";
-        esc = "capslock";
-      };
-    };
-
+    # Printing
     avahi = {
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
     };
-
     printing = {
       enable = true;
       drivers = with pkgs; [
@@ -132,8 +130,8 @@
       ];
     };
 
+    # Power Management
     power-profiles-daemon.enable = false;
-
     tlp = {
       enable = true;
       pd.enable = true;
