@@ -75,7 +75,6 @@
     ripgrep
     ruff
     rumdl
-    steam
     tealdeer
     tree-sitter
     uv
@@ -97,6 +96,7 @@
     fish.enable = true;
     neovim.enable = true;
     nix-ld.enable = true;
+    steam.enable = true;
   };
 
   security.pki.certificateFiles = [
