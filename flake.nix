@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     helium = {
       url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,25 +20,19 @@
           { pkgs, ... }:
           {
             nixpkgs.overlays = [
-              inputs.neovim-nightly-overlay.overlays.default
               inputs.nix-cachyos-kernel.overlays.default
+              inputs.neovim-nightly-overlay.overlays.default
             ];
 
             nix.settings = {
-              substituters = [
-                "https://attic.xuyh0120.win/lantian"
-                "https://nix-community.cachix.org"
-              ];
-              trusted-public-keys = [
-                "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-                "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-              ];
+              substituters = [ "https://attic.xuyh0120.win/lantian" ];
+              trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
             };
 
             boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
             environment.systemPackages = [
-              inputs.helium.packages.${pkgs.stdenv.system}.default
+              inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
             ];
           }
         )
