@@ -65,7 +65,6 @@
     freecad
     fzf
     gcc
-    ghostty
     git
     git-crypt
     godot
@@ -86,8 +85,12 @@
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
     elisa
-    konsole
     qrca
+  ];
+
+  # List font packages installed in system profile.
+  fonts.packages = with pkgs; [
+    nerd-fonts.symbols-only
   ];
 
   # List programs that you want to enable:
