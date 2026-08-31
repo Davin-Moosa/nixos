@@ -65,7 +65,6 @@
     freecad
     fzf
     gcc
-    ghostty
     git
     git-crypt
     godot
@@ -85,9 +84,13 @@
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
-    konsole
     elisa
     qrca
+  ];
+
+  # List font packages installed in system profile.
+  fonts.packages = with pkgs; [
+    nerd-fonts.symbols-only
   ];
 
   # List programs that you want to enable:
@@ -117,21 +120,19 @@
 
     keyd = {
       enable = true;
-      keyboards = {
-        default = {
-          settings = {
-            main = {
-              shift = "oneshot(shift)";
-              meta = "oneshot(meta)";
-              control = "oneshot(control)";
+      keyboards.default.settings = {
+        main = {
+          leftalt = "oneshot(control)";
+          rightalt = "oneshot(alt)";
+          shift = "oneshot(shift)";
 
-              leftalt = "oneshot(alt)";
-              rightalt = "oneshot(altgr)";
+          rightcontrol = "layer(altgr)";
 
-              esc = "capslock";
-              capslock = "overloadt(control, esc, 200)";
-            };
-          };
+          capslock = "esc";
+          esc = "capslock";
+        };
+        global = {
+          oneshot_timeout = 1000;
         };
       };
     };
