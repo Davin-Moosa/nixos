@@ -38,9 +38,9 @@
   services.xserver.xkb.layout = "us";
 
   # Define a user account.
-  users.users."davinmoosa" = {
+  users.users."davin" = {
     isNormalUser = true;
-    description = "Davin Moosa";
+    description = "Davin";
     extraGroups = [ "dialout" "networkmanager" "wheel" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
